@@ -10,8 +10,7 @@ const {
   assign,
   computed,
   get,
-  getProperties,
-  set
+  getProperties
 } = Ember;
 
 const configurationTiers = [
@@ -23,7 +22,7 @@ const configurationTiers = [
 
 export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
-  hook: 'affinity_engine_menu_bar_load_menu',
+  hook: 'affinity_engine_menu_bar_reset_menu',
 
   saveStateManager: registrant('affinity-engine/save-state-manager'),
   config: multiton('affinity-engine/config', 'engineId'),
