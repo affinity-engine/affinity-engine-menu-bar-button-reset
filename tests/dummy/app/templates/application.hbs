@@ -1,0 +1,7 @@
+{{#affinity-engine engineId="menu-bar-button-reset" config=config isFocused=true as |engine|}}
+  {{affinity-engine-stage engineId=engine.engineId initialScene="reset"}}
+
+  {{#affinity-engine-menu-bar engineId=engine.engineId}}
+    {{affinity-engine-menu-bar-button-reset engineId=engine.engineId}}
+  {{/affinity-engine-menu-bar}}
+{{/affinity-engine}}
