@@ -39,7 +39,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
   }),
 
   choices: [{
-    text: 'affinity-engine.menu.reset.confirm'
+    text: 'affinity-engine.menu-bar.buttons.reset.ok'
   }],
 
   actions: {

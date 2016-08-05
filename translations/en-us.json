@@ -1,0 +1,12 @@
+{
+  "affinity-engine": {
+    "menu-bar": {
+      "buttons": {
+        "reset": {
+          "header": "Restart your game? All unsaved progress will be lost.",
+          "ok": "Okay"
+        }
+      }
+    }
+  }
+}
