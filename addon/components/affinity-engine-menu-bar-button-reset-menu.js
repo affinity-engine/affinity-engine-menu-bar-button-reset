@@ -1,16 +1,14 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-menu-bar-button-reset-menu';
-import { classNamesConfigurable, configurable, deepConfigurable, registrant } from 'affinity-engine';
+import { classNamesConfigurable, configurable, registrant } from 'affinity-engine';
 import { ModalMixin } from 'affinity-engine-menu-bar';
 import { BusPublisherMixin } from 'ember-message-bus';
 import multiton from 'ember-multiton-service';
 
 const {
   Component,
-  assign,
-  computed,
   get,
-  getProperties
+  set
 } = Ember;
 
 const configurationTiers = [
@@ -23,20 +21,23 @@ const configurationTiers = [
 export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
   hook: 'affinity_engine_menu_bar_reset_menu',
+  header: 'affinity-engine.menu-bar.buttons.reset.header',
 
   saveStateManager: registrant('affinity-engine/save-state-manager'),
   config: multiton('affinity-engine/config', 'engineId'),
 
-  menuColumns: configurable(configurationTiers, 'menuColumns'),
+  acceptKeys: configurable(configurationTiers, 'keys.accept'),
+  animationLibrary: configurable(configurationTiers, 'animationLibrary'),
+  cancelKeys: configurable(configurationTiers, 'keys.cancel'),
   customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
   iconFamily: configurable(configurationTiers, 'iconFamily'),
-  keys: deepConfigurable(configurationTiers, 'keys'),
-
-  options: computed('menuColumns', 'customClassNames', 'iconFamily', 'icon', 'keys', {
-    get() {
-      return assign({ classNames: get(this, 'customClassNames') }, getProperties(this, 'menuColumns', 'iconFamily', 'icon', 'keys'));
-    }
-  }),
+  menuColumns: configurable(configurationTiers, 'menuColumns'),
+  moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
+  moveLeftKeys: configurable(configurationTiers, 'keys.moveLeft'),
+  moveRightKeys: configurable(configurationTiers, 'keys.moveRight'),
+  moveUpKeys: configurable(configurationTiers, 'keys.moveUp'),
+  transitionIn: configurable(configurationTiers, 'transitionIn'),
+  transitionOut: configurable(configurationTiers, 'transitionOut'),
 
   choices: [{
     text: 'affinity-engine.menu-bar.buttons.reset.ok'
@@ -44,13 +45,13 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
 
   actions: {
     closeModal() {
-      this.closeModal();
+      set(this, 'willTransitionOut', true);
     },
 
     onChoice() {
       this.publish(`ae:${get(this, 'engineId')}:restartingEngine`);
 
-      this.closeModal();
+      set(this, 'willTransitionOut', true);
     }
   }
 });
