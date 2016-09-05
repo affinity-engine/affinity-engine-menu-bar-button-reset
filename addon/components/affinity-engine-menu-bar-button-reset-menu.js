@@ -21,7 +21,6 @@ const configurationTiers = [
 export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
   hook: 'affinity_engine_menu_bar_reset_menu',
-  header: 'affinity-engine.menu-bar.buttons.reset.header',
 
   saveStateManager: registrant('affinity-engine/save-state-manager'),
   config: multiton('affinity-engine/config', 'engineId'),
@@ -30,6 +29,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
   animationLibrary: configurable(configurationTiers, 'animationLibrary'),
   cancelKeys: configurable(configurationTiers, 'keys.cancel'),
   customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
+  header: configurable(configurationTiers, 'header'),
   iconFamily: configurable(configurationTiers, 'iconFamily'),
   menuColumns: configurable(configurationTiers, 'menuColumns'),
   moveDownKeys: configurable(configurationTiers, 'keys.moveDown'),
