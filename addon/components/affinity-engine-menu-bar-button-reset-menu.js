@@ -49,7 +49,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
     },
 
     onChoice() {
-      this.publish(`ae:${get(this, 'engineId')}:restartingEngine`);
+      this.publish(`ae:${get(this, 'engineId')}:main:restartingEngine`);
 
       set(this, 'willTransitionOut', true);
     }
