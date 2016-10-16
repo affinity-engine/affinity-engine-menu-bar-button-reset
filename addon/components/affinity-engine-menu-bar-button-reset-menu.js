@@ -22,7 +22,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
   hook: 'affinity_engine_menu_bar_reset_menu',
 
-  saveStateManager: registrant('affinity-engine/save-state-manager'),
+  dataManager: registrant('affinity-engine/data-manager'),
   config: multiton('affinity-engine/config', 'engineId'),
 
   acceptKeys: configurable(configurationTiers, 'keys.accept'),
