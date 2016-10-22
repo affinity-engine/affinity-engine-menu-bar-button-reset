@@ -2,7 +2,6 @@ import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-menu-bar-button-reset-menu';
 import { classNamesConfigurable, configurable, registrant } from 'affinity-engine';
 import { ModalMixin } from 'affinity-engine-menu-bar';
-import { BusPublisherMixin } from 'ember-message-bus';
 import multiton from 'ember-multiton-service';
 
 const {
@@ -18,12 +17,13 @@ const configurationTiers = [
   'config.attrs'
 ];
 
-export default Component.extend(BusPublisherMixin, ModalMixin, {
+export default Component.extend(ModalMixin, {
   layout,
   hook: 'affinity_engine_menu_bar_reset_menu',
 
-  dataManager: registrant('affinity-engine/data-manager'),
   config: multiton('affinity-engine/config', 'engineId'),
+  eBus: multiton('message-bus', 'engineId'),
+  dataManager: registrant('affinity-engine/data-manager'),
 
   acceptKeys: configurable(configurationTiers, 'keys.accept'),
   animationLibrary: configurable(configurationTiers, 'animationLibrary'),
@@ -49,7 +49,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
     },
 
     onChoice() {
-      this.publish(`ae:${get(this, 'engineId')}:main:restartingEngine`);
+      get(this, 'eBus').publish('restartingEngine');
 
       set(this, 'willTransitionOut', true);
     }
