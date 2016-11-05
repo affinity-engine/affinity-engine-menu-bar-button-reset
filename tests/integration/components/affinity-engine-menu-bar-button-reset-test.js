@@ -15,7 +15,7 @@ moduleForComponent('affinity-engine-menu-bar-button-reset', 'Integration | Compo
 const configurationTiers = [
   'config.attrs.component.menuBar.button.reset',
   'config.attrs.component.menuBar',
-  'config.attrs'
+  'config.attrs.global'
 ];
 
 configurationTiers.forEach((priority) => {
