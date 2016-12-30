@@ -17,6 +17,8 @@ moduleForAcceptance('Acceptance | menu bar/reset', {
 test('Affinity Engine | Menu Bar | Button | Reset', function(assert) {
   assert.expect(6);
 
+  const done = assert.async();
+
   visit('/').then(() => {
     assert.equal($hook('affinity_engine_stage_direction_text').text().trim(), '1', 'text is correct');
 
@@ -38,5 +40,7 @@ test('Affinity Engine | Menu Bar | Button | Reset', function(assert) {
   }).then(() => {
     assert.equal($hook('affinity_engine_menu_bar_reset_menu').length, 0, 'menu closes after reset');
     assert.equal($hook('affinity_engine_stage_direction_text').text().trim(), '1', 'engine restarted');
+
+    done();
   });
 });
