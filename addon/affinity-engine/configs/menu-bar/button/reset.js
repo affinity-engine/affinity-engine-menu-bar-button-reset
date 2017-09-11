@@ -1,10 +1,15 @@
 export default {
+  priority: 2,
   component: {
     menuBar: {
       button: {
         reset: {
-          header: 'affinity-engine.menu-bar.buttons.reset.header',
-          icon: 'refresh'
+          attrs: {
+            header: 'affinity-engine.menu-bar.buttons.reset.header',
+            icon: {
+              type: 'refresh'
+            }
+          }
         }
       }
     }
