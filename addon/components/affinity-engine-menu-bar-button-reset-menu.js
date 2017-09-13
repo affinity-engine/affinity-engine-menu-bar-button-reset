@@ -14,7 +14,7 @@ const configurationTiers = [
   'component.menuBar.button.reset',
   'component.menuBar.menu',
   'component.menuBar',
-  'children'
+  'all'
 ];
 
 export default Component.extend(ModalMixin, {
